@@ -1,0 +1,39 @@
+<!-- <div *ngFor="let employee of employees">
+    {{employee}}
+</div> -->
+<app-create-employee-form (onEmployeeCreation)="getEmployees()"></app-create-employee-form>
+    <form [formGroup]="updateEmployeeForm" (ngSubmit)="updateEmployee()">
+        <table>
+            <tr>
+                <th>Employeee Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngFor="let employee of employees">
+                <td *ngIf="!(updateEmployeeFlag && employee.employeeId == updateEmployeeId)">
+                    {{employee.employeeId}}</td>
+                <td *ngIf="!(updateEmployeeFlag && employee.employeeId == updateEmployeeId)">
+                    {{employee.name}}</td>
+                <td *ngIf="!(updateEmployeeFlag && employee.employeeId == updateEmployeeId)">
+                    {{employee.email}}</td>
+                <td *ngIf="!(updateEmployeeFlag && employee.employeeId == updateEmployeeId)">
+                    {{employee.salary}}</td>
+                <td *ngIf="!(updateEmployeeFlag && employee.employeeId == updateEmployeeId)">
+                    <button type="button" (click)="showUpdateEmployeeFlag(employee)">Update</button>
+                    <button>Delete</button>
+                </td>
+
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">{{employee.employeeId}}</td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId"><input type="text" name="name" formControlName="name"></td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId"><input type="email" name="email" formControlName="email"></td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId"><input type="number" name="salary" formControlName="salary"></td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">
+                    <button type="submit">Update</button>
+                    <button>Delete</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+<button *ngFor="let page of totalPages | array" (click)="onChangePage(page)">{{page}}</button>
