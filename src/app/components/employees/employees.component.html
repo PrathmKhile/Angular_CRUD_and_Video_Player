@@ -22,16 +22,33 @@
                     {{employee.salary}}</td>
                 <td *ngIf="!(updateEmployeeFlag && employee.employeeId == updateEmployeeId)">
                     <button type="button" (click)="showUpdateEmployeeFlag(employee)">Update</button>
-                    <button>Delete</button>
+                    <button type="button">Delete</button>
                 </td>
 
-                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">{{employee.employeeId}}</td>
-                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId"><input type="text" name="name" formControlName="name"></td>
-                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId"><input type="email" name="email" formControlName="email"></td>
-                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId"><input type="number" name="salary" formControlName="salary"></td>
                 <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">
-                    <button type="submit">Update</button>
-                    <button>Delete</button>
+                    {{employee.employeeId}}
+                </td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">
+                    <input type="text" name="name" formControlName="name">
+                    <div *ngIf="updateEmployeeForm.get('name')?.invalid && 
+                        updateEmployeeForm.get('name')?.touched" [ngStyle]="{color:'red'}">
+                        <div *ngIf="updateEmployeeForm.get('name')?.hasError('required')">
+                            Name is required field
+                        </div>
+                        <div *ngIf="updateEmployeeForm.get('name')?.hasError('minlength')">
+                            Name should be atleast 4 character long
+                        </div>
+                    </div>
+                </td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">
+                    <input type="email" name="email" formControlName="email">
+                </td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">
+                    <input type="number" name="salary" formControlName="salary">
+                </td>
+                <td *ngIf="updateEmployeeFlag && employee.employeeId == updateEmployeeId">
+                    <button type="submit" [disabled]="!updateEmployeeForm.valid">Update</button>
+                    <button type="button">Delete</button>
                 </td>
             </tr>
         </table>

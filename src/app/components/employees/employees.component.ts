@@ -67,7 +67,7 @@ export class EmployeesComponent {
   updateEmployeeFlag: boolean = false;
   updateEmployeeId: number = -1;
   updateEmployeeForm: FormGroup = new FormGroup({
-    "name": new FormControl("", [Validators.required]),
+    "name": new FormControl("", [Validators.required, Validators.minLength(4)]),
     "email" : new FormControl("", [Validators.required]),
     "salary": new FormControl(0, [Validators.required])
   });
@@ -103,9 +103,11 @@ export class EmployeesComponent {
   showUpdateEmployeeFlag(employee: Employee){
     this.updateEmployeeId = employee.employeeId;
     this.updateEmployeeFlag = true;
-    this.updateEmployeeForm.value.name = employee.name; 
-    this.updateEmployeeForm.value.email = employee.email; 
-    this.updateEmployeeForm.value.salary = employee.salary;
+    this.updateEmployeeForm.setValue({
+      "name":employee.name,
+      "email": employee.email,
+      "salary": employee.salary
+    });
     console.log(this.updateEmployeeForm.value.salary);
   }
 
