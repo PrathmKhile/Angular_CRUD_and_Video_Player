@@ -3,6 +3,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { EmployeesComponent } from './components/employees/employees.component';
+import { authGuard } from './Guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
     },
     {
         path: "employees",
-        component: EmployeesComponent
-    },
+        component: EmployeesComponent,
+        canActivate: [authGuard]
+    }
 ];
