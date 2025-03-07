@@ -54,3 +54,6 @@
         </table>
     </form>
 <button *ngFor="let page of totalPages | array" (click)="onChangePage(page)">{{page}}</button>
+
+<!-- ng-content is use to display data/content which pass from parent component (lifecycle component in this case) -->
+<ng-content></ng-content>

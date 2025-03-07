@@ -4,6 +4,7 @@ import { AboutComponent } from './components/about/about.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { authGuard } from './Guards/auth.guard';
+import { LifecycleMethodsComponent } from './components/lifecycle-methods/lifecycle-methods.component';
 
 export const routes: Routes = [
     {
@@ -22,5 +23,10 @@ export const routes: Routes = [
         path: "employees",
         component: EmployeesComponent,
         canActivate: [authGuard]
+    },
+    {
+        path: "lifecyclemethods",
+        component: LifecycleMethodsComponent,
+        data: {count:1}
     }
 ];
