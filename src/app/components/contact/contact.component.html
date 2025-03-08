@@ -1,2 +1,5 @@
 <p>contact works!</p>
-<app-lifecycle-methods [count]="10"></app-lifecycle-methods>
+<app-lifecycle-methods [count]="count" (onCountChange)="handleCountChange($event)" *ngIf="count < 30">
+    <!-- This div will automatically passed to LifecycleComponent (using ng-content we can access it) -->
+    <div #div1>Content projected by contact in lifecycle component: {{count}}</div>
+</app-lifecycle-methods>
